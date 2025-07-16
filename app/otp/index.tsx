@@ -1,3 +1,4 @@
+import { BackButton } from "@/elements/BackButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
@@ -39,8 +40,11 @@ export default function OTPScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Phone Verification</Text>
-      <Text style={styles.subtext}>
+      <View style={styles.headerContainer}>
+        <BackButton />
+        <Text style={styles.headerText}>Phone Verification</Text>
+      </View>
+      <Text style={styles.text}>
         Enter 6 digit verification code sent to your phone number
       </Text>
 
@@ -62,20 +66,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#2D2E2F",
     padding: 24,
-    justifyContent: "center",
   },
-  header: {
+  headerContainer: {
+    position: "relative",
+  },
+  headerText: {
     fontSize: 20,
     color: "#fff",
-    fontWeight: "bold",
-    marginBottom: 12,
+    marginBottom: 50,
     textAlign: "center",
   },
-  subtext: {
-    fontSize: 15,
-    color: "#ccc",
-    textAlign: "center",
+  text: {
+    fontSize: 25,
+    color: "#fff",
     marginBottom: 10,
+    fontWeight: "bold",
   },
   resend: {
     color: "#f7901e",
