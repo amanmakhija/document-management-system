@@ -1,34 +1,19 @@
 import CountryCodeDropdown from "@/components/CountryCodeDropdown";
+import { useLogin } from "@/hooks/useLogin";
 import { Image } from "expo-image";
-import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
-  Alert,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
-import { generateOTP } from "../../services/api";
 
 export default function LoginScreen() {
   const [phone, setPhone] = useState("");
-  const router = useRouter();
   const [countryCode, setCountryCode] = useState("+91");
-
-  const handleSendOTP = async () => {
-    if (phone.length !== 10) {
-      Alert.alert("Invalid", "Enter a valid 10-digit mobile number");
-      return;
-    }
-    try {
-      await generateOTP(phone);
-      router.push({ pathname: "/otp", params: { mobile: phone } });
-    } catch {
-      Alert.alert("Error", "Could not send OTP. Try again.");
-    }
-  };
+  const { sendOtp: handleSendOTP } = useLogin(phone);
 
   return (
     <View style={styles.container}>

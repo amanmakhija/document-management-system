@@ -1,43 +1,17 @@
 import { BackButton } from "@/components/BackButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useState } from "react";
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useLogin } from "@/hooks/useLogin";
+import { useLocalSearchParams } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import OTPInput from "../../components/OTPInput";
-import { generateOTP, validateOTP } from "../../services/api";
 
 export default function OTPScreen() {
-  const router = useRouter();
   const { mobile } = useLocalSearchParams<{ mobile: string }>();
-  const [code, setCode] = useState(["", "", "", "", "", ""]);
-
-  const otp = code.join("");
-
-  const handleVerify = async () => {
-    if (otp.length !== 6) {
-      Alert.alert("Error", "Please enter 6-digit OTP");
-      return;
-    }
-
-    try {
-      const { data } = await validateOTP(mobile, otp);
-      const { token } = data.data;
-      await AsyncStorage.setItem("token", token);
-      router.replace("/");
-    } catch {
-      Alert.alert("Invalid OTP", "Please try again");
-    }
-  };
-
-  const resendOtp = async () => {
-    setCode(["", "", "", "", "", ""]);
-    try {
-      await generateOTP(mobile);
-      Alert.alert("Resent!");
-    } catch {
-      Alert.alert("Error", "Could not send OTP. Try again.");
-    }
-  };
+  const {
+    resendOtp,
+    verifyOtp: handleVerify,
+    code,
+    setCode,
+  } = useLogin(mobile);
 
   return (
     <View style={styles.container}>

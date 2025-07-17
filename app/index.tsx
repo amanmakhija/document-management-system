@@ -1,8 +1,8 @@
+import { useAuthGuard } from "@/hooks/useAuthGuard";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
-  Alert,
   FlatList,
   StyleSheet,
   Text,
@@ -10,31 +10,17 @@ import {
   View,
 } from "react-native";
 import HomeSearchBar from "../components/HomeSearchBar";
-import { isAuthenticated } from "../utils/auth";
 
 export default function HomePage() {
   const router = useRouter();
+  const loading = useAuthGuard();
   const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
   const [documents, setDocuments] = useState([]);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const authed = await isAuthenticated();
-      if (!authed) {
-        router.replace("/login");
-      } else {
-        setLoading(false);
-      }
-    };
-
-    checkAuth();
-  }, []);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
+    const timeout = setTimeout(async () => {
       if (search.trim() !== "") {
-        console.log("Searching for:", search);
+        // search for document
       }
     }, 500);
 
@@ -44,8 +30,7 @@ export default function HomePage() {
   if (loading) return null;
 
   const handleUpload = () => {
-    Alert.alert("Upload", "Navigate to upload screen");
-    // router.push('/upload');
+    router.push("/upload");
   };
 
   return (
