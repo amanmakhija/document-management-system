@@ -1,4 +1,4 @@
-import { BackButton } from "@/elements/BackButton";
+import { BackButton } from "@/components/BackButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useState } from "react";
@@ -20,16 +20,17 @@ export default function OTPScreen() {
     }
 
     try {
-      const res = await validateOTP(mobile, otp);
-      const token = res.data.token;
+      const { data } = await validateOTP(mobile, otp);
+      const { token } = data.data;
       await AsyncStorage.setItem("token", token);
-      Alert.alert("Success", "OTP verified");
+      router.replace("/");
     } catch {
       Alert.alert("Invalid OTP", "Please try again");
     }
   };
 
   const resendOtp = async () => {
+    setCode(["", "", "", "", "", ""]);
     try {
       await generateOTP(mobile);
       Alert.alert("Resent!");
