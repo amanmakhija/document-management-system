@@ -4,8 +4,6 @@ import TagInput from "@/components/TagInput";
 import UploadBox from "@/components/UploadBox";
 import { useFileUpload } from "@/hooks/useFileUpload";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { useRouter } from "expo-router";
-import { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -16,7 +14,6 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function UploadScreen() {
-  const router = useRouter();
   const {
     submitFile,
     handlePickFile,
@@ -36,8 +33,6 @@ export default function UploadScreen() {
     setRemarks,
     setSelectedFile,
   } = useFileUpload();
-
-  const [userId] = useState("test_aman");
 
   return (
     <View style={styles.container}>

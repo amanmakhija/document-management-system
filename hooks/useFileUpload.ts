@@ -1,15 +1,16 @@
 import { uploadDocument } from "@/services/api";
+import { RootState } from "@/store";
 import { formatDateToDDMMYYYY } from "@/utils/date";
 import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { Alert } from "react-native";
+import { useSelector } from "react-redux";
 
 export const useFileUpload = () => {
   const router = useRouter();
-
-  const [userId] = useState("test_aman");
+  const user = useSelector((state: RootState) => state.user);
   const [majorHead, setMajorHead] = useState("");
   const [minorHead, setMinorHead] = useState("");
   const [remarks, setRemarks] = useState("");
@@ -47,6 +48,13 @@ export const useFileUpload = () => {
       return;
     }
 
+    if (!user.user_id) {
+      Alert.alert("Not logged in");
+      router.dismissAll();
+      router.replace("/login");
+      return;
+    }
+
     try {
       const { data } = await uploadDocument(
         selectedFile.uri,
@@ -58,12 +66,13 @@ export const useFileUpload = () => {
           document_date: formatDateToDDMMYYYY(date),
           document_remarks: remarks,
           tags: tags.map((t) => ({ tag_name: t })),
-          user_id: userId,
+          user_id: user.user_id,
         }
       );
 
       if (data.status) {
         Alert.alert("Success", "File uploaded successfully.");
+        router.dismissAll();
         router.replace("/");
       } else Alert.alert(data.message);
     } catch (error) {

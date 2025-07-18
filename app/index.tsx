@@ -35,8 +35,11 @@ export default function HomePage() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
+      <View style={styles.headerRow}>
         <Text style={styles.headerText}>Document Management System</Text>
+        <TouchableOpacity onPress={() => router.push("/profile")}>
+          <MaterialIcons name="account-circle" size={32} color="#fff" />
+        </TouchableOpacity>
       </View>
 
       <HomeSearchBar value={search} onChange={setSearch} />
@@ -63,7 +66,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#1c1c1c",
     paddingHorizontal: 30,
   },
-  headerContainer: {
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginTop: 20,
   },
   headerText: {
