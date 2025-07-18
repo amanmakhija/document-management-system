@@ -92,3 +92,18 @@ export const createTag = async (tag: string) => {
     tag_name: tag,
   });
 };
+
+export const searchDocuments = async (filters: {
+  major_head: string;
+  minor_head: string;
+  from_date: string;
+  to_date: string;
+  tags: { tag_name: string }[];
+  uploaded_by: string;
+  start: number;
+  length: number;
+  filterId: string;
+  search: { value: string };
+}) => {
+  return API.post("searchDocumentEntry", filters);
+};
