@@ -1,3 +1,4 @@
+import { formatDateToDDMMYYYY } from "@/utils/date";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as FileSystem from "expo-file-system";
 import { Image } from "expo-image";
@@ -53,7 +54,9 @@ export default function PreviewScreen() {
         {major_head} - {minor_head}
       </Text>
       <Text style={styles.meta}>Uploaded by: {uploaded_by}</Text>
-      <Text style={styles.meta}>Date: {document_date}</Text>
+      <Text style={styles.meta}>
+        Date: {formatDateToDDMMYYYY(new Date(document_date))}
+      </Text>
       <Text style={styles.meta}>Remarks: {document_remarks}</Text>
 
       <View style={styles.previewBox}>
