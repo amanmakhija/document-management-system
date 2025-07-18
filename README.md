@@ -116,4 +116,4 @@ File preview and download supported for images/PDFs
 
 ## Questions?
 
-Feel free to reach out if you need clarification or enhancements. Thanks!
+Feel free to reach out if you need clarification. Thanks!
