@@ -1,50 +1,117 @@
-# Welcome to your Expo app 👋
+# Document Management System - React Native App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a **React Native** mobile application built with [Expo](https://expo.dev), allowing users to securely manage and upload documents. It includes OTP-based login, media upload, tag-based filtering, file previews, and a searchable document repository.
 
-## Get started
+## Features
 
-1. Install dependencies
+- OTP-based Login (Phone verification)
+- Secure file upload (PDFs and images only)
+- Preview support for images and PDFs
+- Advanced search with:
+  - Major/Minor head filters
+  - Date range
+  - Tags
+- Tag management: Add custom tags or reuse existing ones
+- Download support for individual files
+- User Profile & Logout
 
-   ```bash
+## Project Structure
+
+```bash
+/app
+   |_ login.tsx
+   |_ otp.tsx
+   |_ upload.tsx
+   |_ profile.tsx
+   |_ preview.tsx
+   |_ index.tsx (HomePage)
+   |_ _layout.tsx
+
+/components
+   |_ OTPInput.tsx
+   |_ UploadBox.tsx
+   |_ Dropdown.tsx
+   |_ TagInput.tsx
+   |_ BackButton.tsx
+   |_ HomeSearchBar.tsx
+
+/hooks
+   |_ useLogin.ts
+   |_ useAuthGuard.ts
+   |_ useFileUpload.ts
+
+/services
+   |_ api.ts
+
+/utils
+   |_ auth.ts
+
+/store
+   |_ index.ts
+   |_ userSlice.ts
+```
+
+## Setup Instructions
+
+1. **Install dependencies**
+
+   ```
    npm install
    ```
 
-2. Start the app
+2. **Start the development server**
 
    ```bash
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+3. **Run on device/simulator**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Android: Press a
+iOS: Press i
+Expo Go: Scan QR Code from terminal
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Tech Stack
 
-## Get a fresh project
+React Native + Expo
 
-When you're ready, run:
+TypeScript
 
-```bash
-npm run reset-project
-```
+Redux Toolkit
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+React Navigation (via expo-router)
 
-## Learn more
+AsyncStorage for session management
 
-To learn more about developing your project with Expo, look at the following resources:
+Expo FileSystem / ImagePicker / DocumentPicker
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+REST API Integration using axios
 
-## Join the community
+## API Notes
 
-Join our community of developers creating universal apps.
+All requests include a token header for authentication.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+User data and token are managed using Redux + AsyncStorage.
+
+Upload API uses multipart/form-data with file and metadata.
+
+## Final Submission Checklist
+
+All commits are incremental and meaningful
+
+App covers all required screens:
+
+1.  Login
+2.  OTP Verification
+3.  Home (Search + List)
+4.  Upload
+5.  File Preview
+6.  Profile
+
+API integration and error handling are implemented
+
+File preview and download supported for images/PDFs
+
+## Questions?
+
+Feel free to reach out if you need clarification or enhancements. Thanks!
