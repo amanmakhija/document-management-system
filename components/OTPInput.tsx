@@ -10,6 +10,13 @@ export default function OTPInput({ code, setCode }: Props) {
   const inputs = useRef<Array<TextInput | null>>([]);
 
   const handleChange = (text: string, index: number) => {
+    if (text.length === 6 && index === 0) {
+      const newCode = text.split("").slice(0, 6);
+      setCode(newCode);
+      inputs.current[5]?.focus();
+      return;
+    }
+
     const newCode = [...code];
     newCode[index] = text.slice(-1);
     setCode(newCode);
@@ -38,9 +45,11 @@ export default function OTPInput({ code, setCode }: Props) {
           onKeyPress={(e) => handleKeyPress(e, i)}
           style={styles.box}
           keyboardType="number-pad"
-          maxLength={1}
+          maxLength={6}
           returnKeyType="done"
           textAlign="center"
+          autoComplete="sms-otp"
+          textContentType="oneTimeCode"
         />
       ))}
     </View>
