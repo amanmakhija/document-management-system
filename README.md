@@ -67,9 +67,11 @@ This is a **React Native** mobile application built with [Expo](https://expo.dev
 
 3. **Run on device/simulator**
 
-Android: Press a
-iOS: Press i
-Expo Go: Scan QR Code from terminal
+   ```bash
+   Android: Press a
+   iOS: Press i
+   Expo Go: Scan QR Code from terminal
+   ```
 
 ## Tech Stack
 
