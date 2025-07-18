@@ -46,7 +46,6 @@ export default function UploadScreen() {
           handlePickFromGallery={handlePickFromGallery}
           handleTakePhoto={handleTakePhoto}
           selectedFile={selectedFile}
-          setSelectedFile={setSelectedFile}
           removeFile={removeFile}
         />
         {selectedFile && (

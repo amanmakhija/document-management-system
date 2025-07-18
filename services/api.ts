@@ -1,14 +1,6 @@
+import { Metadata } from "@/types/utility";
 import { getToken } from "@/utils/auth";
 import axios from "axios";
-
-type Metadata = {
-  major_head: string;
-  minor_head: string;
-  document_date: string;
-  document_remarks: string;
-  user_id: string;
-  tags: { tag_name: string }[];
-};
 
 const API = axios.create({
   baseURL: "https://apis.allsoft.co/api/documentManagement/",

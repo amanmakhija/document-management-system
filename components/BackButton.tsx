@@ -1,12 +1,9 @@
+import { BackButtonProps } from "@/types/utility";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 
-type Props = {
-  style?: ViewStyle;
-};
-
-export function BackButton({ style }: Props) {
+export function BackButton({ style }: BackButtonProps) {
   const router = useRouter();
 
   const handleBack = () => router.back();

@@ -1,28 +1,9 @@
+import { UploadBoxProps } from "@/types/utility";
 import { FontAwesome5, MaterialIcons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-interface UploadBoxProps {
-  selectedFile: {
-    name: string;
-    uri: string;
-    type: string;
-  } | null;
-  setSelectedFile: React.Dispatch<
-    React.SetStateAction<{
-      name: string;
-      uri: string;
-      type: string;
-    } | null>
-  >;
-  handlePickFile: () => Promise<void>;
-  handlePickFromGallery: () => Promise<void>;
-  handleTakePhoto: () => Promise<void>;
-  removeFile: () => void;
-}
-
 export default function UploadBox({
   selectedFile,
-  setSelectedFile,
   handlePickFile,
   handlePickFromGallery,
   handleTakePhoto,

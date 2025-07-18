@@ -1,3 +1,5 @@
+import { COUNTRY_CODES } from "@/constants/country-code";
+import { CountryCodeDropdownProps } from "@/types/utility";
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
@@ -9,26 +11,10 @@ import {
   View,
 } from "react-native";
 
-type Country = {
-  code: string;
-  dial_code: string;
-  name: string;
-};
-
-const COUNTRY_CODES: Country[] = [
-  { code: "IN", dial_code: "+91", name: "India" },
-  { code: "US", dial_code: "+1", name: "USA" },
-  { code: "GB", dial_code: "+44", name: "UK" },
-  { code: "AU", dial_code: "+61", name: "Australia" },
-  { code: "ID", dial_code: "+62", name: "Indonesia" },
-];
-
-type Props = {
-  onSelect: (code: string) => void;
-  selectedCode: string;
-};
-
-export default function CountryCodeDropdown({ onSelect, selectedCode }: Props) {
+export default function CountryCodeDropdown({
+  onSelect,
+  selectedCode,
+}: CountryCodeDropdownProps) {
   const [visible, setVisible] = useState(false);
 
   const selected = COUNTRY_CODES.find((c) => c.dial_code === selectedCode);

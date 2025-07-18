@@ -1,3 +1,4 @@
+import { DropdownProps } from "@/types/utility";
 import { MaterialIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import {
@@ -9,19 +10,12 @@ import {
   View,
 } from "react-native";
 
-type Props = {
-  label: string;
-  options: string[];
-  selected: string;
-  onSelect: (value: string) => void;
-};
-
 export default function Dropdown({
   label,
   options,
   selected,
   onSelect,
-}: Props) {
+}: DropdownProps) {
   const [visible, setVisible] = useState(false);
 
   return (

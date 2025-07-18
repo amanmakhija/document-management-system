@@ -1,12 +1,8 @@
+import { OTPInputProps } from "@/types/utility";
 import React, { useRef } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 
-type Props = {
-  code: string[];
-  setCode: (val: string[]) => void;
-};
-
-export default function OTPInput({ code, setCode }: Props) {
+export default function OTPInput({ code, setCode }: OTPInputProps) {
   const inputs = useRef<Array<TextInput | null>>([]);
 
   const handleChange = (text: string, index: number) => {

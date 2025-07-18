@@ -1,4 +1,5 @@
 import { createTag, fetchTags } from "@/services/api";
+import { TagInputProps } from "@/types/utility";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import {
@@ -10,12 +11,7 @@ import {
   View,
 } from "react-native";
 
-type Props = {
-  tags: string[];
-  setTags: (tags: string[]) => void;
-};
-
-export default function TagInput({ tags, setTags }: Props) {
+export default function TagInput({ tags, setTags }: TagInputProps) {
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
