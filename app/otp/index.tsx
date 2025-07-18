@@ -6,12 +6,7 @@ import OTPInput from "../../components/OTPInput";
 
 export default function OTPScreen() {
   const { mobile } = useLocalSearchParams<{ mobile: string }>();
-  const {
-    resendOtp,
-    verifyOtp: handleVerify,
-    code,
-    setCode,
-  } = useLogin(mobile);
+  const { resendOtp, verifyOtp, code, setCode } = useLogin(mobile);
 
   return (
     <View style={styles.container}>
@@ -25,7 +20,7 @@ export default function OTPScreen() {
 
       <OTPInput code={code} setCode={setCode} />
 
-      <TouchableOpacity onPress={handleVerify}>
+      <TouchableOpacity onPress={verifyOtp}>
         <Text style={styles.verifyBtn}>Verify</Text>
       </TouchableOpacity>
 
